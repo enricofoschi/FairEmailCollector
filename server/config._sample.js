@@ -1,0 +1,6 @@
+coreConfig = {
+    smtp: {
+        username: '',
+        password: ''
+    }
+}
