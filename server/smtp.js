@@ -1,4 +1,5 @@
 Meteor.startup(function () {
-    console.log(coreConfig);
-    process.env.MAIL_URL = 'smtp://' + coreConfig.username  + ':' + coreConfig.password + '@smtp.sendgrid.net:587';
+	if(((serverConfig.smtp || {}).username || '').length) {
+		process.env.MAIL_URL = 'smtp://' + serverConfig.smtp.username + ':' + serverConfig.smtp.password + '@' + serverConfig.smtp.server;
+	}
 });

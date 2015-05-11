@@ -1,6 +1,7 @@
-coreConfig = {
+serverConfig = {
     smtp: {
         username: '',
-        password: ''
+        password: '',
+		server: ''
     }
 }
