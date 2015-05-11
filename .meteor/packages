@@ -10,3 +10,7 @@ insecure
 twbs:bootstrap
 iron:router
 email
+fortawesome:fontawesome
+fourseven:scss
+francocatena:compass
+underscore
