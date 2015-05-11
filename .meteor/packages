@@ -5,12 +5,10 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
-insecure
-twbs:bootstrap
 iron:router
 email
 fortawesome:fontawesome
 fourseven:scss
 francocatena:compass
 underscore
+houston:admin
