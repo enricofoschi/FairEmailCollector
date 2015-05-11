@@ -5,8 +5,12 @@ h1
     line-height:1.6em;
 }
 
-header h1
+h2
 {
-    margin-bottom:0;
-    line-height:1em;
+    font-size:26px;
+    margin:0 0 15px 0;
+    font-weight:bold;
+    display:inline-block;
+    border-bottom:1px solid #aaa;
+    padding-bottom:1px;
 }
