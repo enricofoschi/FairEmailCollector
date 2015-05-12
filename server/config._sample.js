@@ -5,6 +5,11 @@ serverConfig = {
 		server: ''
     },
 
+	kadira: {
+		appId: '',
+		appSecret: ''
+	},
+
 	jobs: [
 		{
 			code: 'SSE',
