@@ -1,0 +1,14 @@
+.core-index-container
+{
+    .jobs-container
+    {
+        padding-top:20px;
+
+        .job
+        {
+            background: #fff;
+            padding: 20px;
+            @include single-box-shadow;
+        }
+    }
+}

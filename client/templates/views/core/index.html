@@ -1,28 +1,61 @@
 <template name="core.index">
 
-    <h2>I am...</h2>
-    <form>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group adaptive-field-wrapper">
-                    <label for="subscriptionFirstName">First Name</label>
-                    <input class="form-control input-lg" type="text" name="firstName" id="subscriptionFirstName" placeholder="First Name" />
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="form-group adaptive-field-wrapper">
-                    <label for="subscriptionLastName">Last Name</label>
-                    <input class="form-control input-lg" type="text" name="firstName" id="subscriptionLastName" placeholder="Last Name" />
-                </div>
-            </div>
-        </div>
-        <div class="form-group adaptive-field-wrapper">
-            <label for="subscriptionEmail">Your Email</label>
-            <input class="form-control txt-email input-lg" type="email" name="email" id="subscriptionEmail" placeholder="Your email address" />
-        </div>
-    </form>
-    <h2>And I Am Interested In...</h2>
+    <div class="core-index-container">
+        <form>
+            <section class="main-section">
+                <div class="container">
+                    <h2>I am...</h2>
 
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group adaptive-field-wrapper">
+                                <label for="subscriptionFirstName">First Name</label>
+                                <input class="form-control input-lg" type="text" name="firstName"
+                                       id="subscriptionFirstName"
+                                       placeholder="First Name"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group adaptive-field-wrapper">
+                                <label for="subscriptionLastName">Last Name</label>
+                                <input class="form-control input-lg" type="text" name="firstName"
+                                       id="subscriptionLastName"
+                                       placeholder="Last Name"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group adaptive-field-wrapper">
+                        <label for="subscriptionEmail">Your Email</label>
+                        <input class="form-control txt-email input-lg" type="email" name="email" id="subscriptionEmail"
+                               placeholder="Your email address"/>
+                    </div>
+                </div>
+            </section>
+            <section class="main-section">
+                <div class="container">
+                    <h2>And I Am Interested In...</h2>
 
+                    <div class="jobs-container">
+                        {{#each jobRows}}
+                        <div class="row">
+                            {{#each this}}
+                            <div class="col-lg-4 col-md-3 col-xs-2">
+                                <div class="job">
+                                    <span class="job-title">{{name}}</span>
+                                </div>
+                            </div>
+                            {{/each}}
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </section>
+
+            <section class="main-section text-center">
+                <a class="btn btn-submit btn-primary btn-lg" type="submit">I'm Interested!</a>
+                <input type="submit" class="move-out">
+            </section>
+        </form>
+    </div>
 
 </template>

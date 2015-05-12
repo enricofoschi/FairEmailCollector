@@ -1,7 +1,18 @@
 @import "compass";
 
-@import 'layout/typography';
-@import 'layout/forms';
-@import 'layout/loading';
+
+/* Core */
+@import 'core/helpers';
+@import 'core/typography';
+@import 'core/forms';
+@import 'core/links';
+
+/* Components */
+@import 'components/loading';
+
+/* Layout */
 @import 'layout/main';
 @import 'layout/header';
+
+/* Views */
+@import 'views/core/index';
