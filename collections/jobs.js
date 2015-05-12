@@ -1,1 +1,1 @@
-Jobs = new Mongo.Collection(null);
+Jobs = new Mongo.Collection('jobs');

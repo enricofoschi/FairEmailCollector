@@ -1,3 +1,5 @@
 Meteor.publish('jobs', function() {
-	return Jobs.find({});
+	return Jobs.find({
+		active: true
+	});
 });
