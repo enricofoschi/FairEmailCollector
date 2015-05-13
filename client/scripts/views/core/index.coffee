@@ -1,4 +1,4 @@
-((template) ->
+((template) =>
     Helpers.Client.Application.addCallbacksToTemplate template.viewName, [
         'adaptive-label'
     ]
@@ -37,4 +37,12 @@
                 selectedJobs.push clickedJob
 
             setSelectedJobs selectedJobs
-    })(Template['core.index'])
+    }
+
+    @AutoForm.hooks {
+        insertCandidateForm:
+            onSuccess: ->
+                console.log 'ok'
+    }
+
+)(Template['core.index'])

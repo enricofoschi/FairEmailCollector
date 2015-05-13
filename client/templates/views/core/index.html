@@ -1,34 +1,20 @@
 <template name="core.index">
 
     <div class="core-index-container">
-        <form>
+        {{#autoForm class='adaptive-field-wrapper' collection='Candidate._collection' id='insertCandidateForm' type='insert'}}
             <section class="main-section">
                 <div class="container">
                     <h2>I am...</h2>
 
                     <div class="row">
                         <div class="col-sm-6">
-                            <div class="form-group adaptive-field-wrapper">
-                                <label for="subscriptionFirstName">First Name</label>
-                                <input class="form-control input-lg" type="text" name="firstName"
-                                       id="subscriptionFirstName"
-                                       placeholder="First Name"/>
-                            </div>
+                            {{> afFormGroup class='input-lg' name='firstName' placeholder='schemaLabel'}}
                         </div>
                         <div class="col-sm-6">
-                            <div class="form-group adaptive-field-wrapper">
-                                <label for="subscriptionLastName">Last Name</label>
-                                <input class="form-control input-lg" type="text" name="firstName"
-                                       id="subscriptionLastName"
-                                       placeholder="Last Name"/>
-                            </div>
+                            {{> afQuickField class='input-lg' name='lastName' placeholder='schemaLabel'}}
                         </div>
                     </div>
-                    <div class="form-group adaptive-field-wrapper">
-                        <label for="subscriptionEmail">Your Email</label>
-                        <input class="form-control txt-email input-lg" type="email" name="email" id="subscriptionEmail"
-                               placeholder="Your email address"/>
-                    </div>
+                    {{> afQuickField class='input-lg' name='email' placeholder='schemaLabel'}}
                 </div>
             </section>
             <section class="main-section">
@@ -42,7 +28,7 @@
                             <div class="col-lg-4 col-md-3 col-xs-2">
                                 <div class="job selectable {{#if isSelected }}selected{{/if}}">
                                     <i class="icon-selected fa fa-check-circle text-success"></i>
-                                    <span class="job-title">{{name}}</span>
+                                    <span class="job-title">{{title}}</span>
                                 </div>
                             </div>
                             {{/each}}
@@ -53,13 +39,12 @@
             </section>
 
             <section class="main-section text-center">
-                <a class="btn btn-submit btn-primary btn-lg" type="submit">
+                <button class="btn btn-submit btn-primary btn-lg" type="submit">
                     <i class="fa fa-thumbs-o-up right15"></i>
                     Hell Yeah! Let's Get Started!
-                </a>
-                <input type="submit" class="move-out">
+                </button>
             </section>
-        </form>
+        {{/autoForm}}
     </div>
 
 </template>
