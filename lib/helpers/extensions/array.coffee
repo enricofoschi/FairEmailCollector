@@ -2,6 +2,9 @@ Array::any = (f) ->
     (return true if f x) for x in @
     return false
 
+Array::remove = (f) ->
+    (x for x in @ when not f x)
+
 Array::present = ->
     @.length > 0
 
