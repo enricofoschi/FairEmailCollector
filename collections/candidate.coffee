@@ -8,26 +8,32 @@ class @Candidate extends BaseCollection
         }
     ]
 
-    # model defaults
-    @defaults:
-        first_name: '',
-        last_name: '',
-        email: ''
+    @schema: new SimpleSchema {
+        jobs:
+            type: [Job._collection.simpleSchema()]
+            optional: true
+        firstName:
+            type: String
+            label: 'First Name'
+            max: 100
+            autoValue: ->
+                if @isSet
+                    return _.titleize @value
+        lastName:
+            type: String
+            label: 'Last Name'
+            max: 100,
+            optional: true
+            autoValue: ->
+                if @isSet
+                    return _.titleize @value
+        email:
+            type: String
+            label: 'Email'
+            max: 255
+            regEx: SimpleSchema.RegEx.Email
+    }
 
-    # titleize the name before creation
-    @before_create: (attr) ->
-        attr.first_name = _.titleize(attr.first_name)
-        attr.last_name = _.titleize(attr.last_name)
-        attr
-
-    # Add some validation parameters. As long as the @error() method is triggered, then validation will fail
-    validate: ->
-        unless @first_name and $first_name.length > 3
-            @error('first_name', 'Please provide a first name')
-
-    error_message: ->
-        msg = ''
-        for i in @errors
-            for key,value of i
-                msg += "<strong>#{key}:</strong> #{value}"
-            msg
+    @_collection.allow {
+        insert: -> true
+    }

@@ -7,7 +7,7 @@ Meteor.startup(=>
 
         dbJob.update {
             code: job.code,
-            name: job.name,
+            title: job.title,
             active: true
         }
 
