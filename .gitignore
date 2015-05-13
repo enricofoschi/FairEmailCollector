@@ -1,2 +1,2 @@
 .idea/*
-server/config.js
+server/config.coffee
