@@ -6,13 +6,14 @@
     kadira:
         appId: ''
         appSecret: ''
+        on: false
     jobs: [
         {
             code: 'SSE',
-            name: 'Senior Software Engineer'
+            title: 'Senior Software Engineer'
         }
         {
             code: 'HOM',
-            name: 'Head of Marketing'
+            title: 'Head of Marketing'
         }
     ]
