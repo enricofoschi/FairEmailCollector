@@ -1,0 +1,15 @@
+<p style="{{styleText}}">
+    A new candidate subscribed:
+    <br/>
+    <br/>
+    <strong>Name</strong>: {{candidate.firstName}} {{candidate.lastName}}
+    <br/>
+    <strong>Email</strong>: {{candidate.email}}
+    <br/>
+    <strong>Interests</strong>:
+</p>
+<ul style="{{styleMain14}}">
+    {{#each jobs}}
+    <li>{{title}}</li>
+    {{/each}}
+</ul>
