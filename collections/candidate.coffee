@@ -10,7 +10,7 @@ class @Candidate extends BaseCollection
 
     @schema: new SimpleSchema {
         jobs:
-            type: [Job._collection.simpleSchema()]
+            type: [Job.schema]
             optional: true
         firstName:
             type: String
@@ -36,4 +36,5 @@ class @Candidate extends BaseCollection
 
     @_collection.allow {
         insert: -> true
+        update: -> true
     }

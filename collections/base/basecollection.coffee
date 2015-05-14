@@ -1,3 +1,5 @@
+global = @
+
 class @BaseCollection extends Minimongoid
 
     @schema: new SimpleSchema {}
@@ -109,16 +111,30 @@ class @BaseCollection extends Minimongoid
 
         doc
 
+    push: (data) ->
+        for type, list of data
+            data[type] = {
+                $each: (@constructor.getBaseObject(value) for value in list)
+            }
+
+        @constructor._collection.update @id, {
+            $addToSet: data
+        }
+
     getValidationContext: (name) ->
         @constructor._collection.simpleSchema().namedContext name
 
+    @getBaseObject: (obj) ->
+        attr = {}
+
+        for own key, value of obj when key not in ['errors', 'createdAt', 'id']
+            attr[key] = value
+
+        attr
+
     validate: ->
 
-        obj = {}
-
-        for own key, value of @ when key not in ['errors', 'createdAt', 'id', '_id']
-            obj[key] = value
-
+        obj = @constructor.getBaseObject @
         validationContext = @getValidationContext @constructor.name
 
         validationContext.validate obj, {modifier: false}
@@ -138,7 +154,5 @@ Meteor.startup(->
     for obj of @
 
         if obj and obj.indexOf('webkit') is -1 and @[obj] and @[obj].prototype instanceof BaseCollection
-            @[obj]._collection.attachSchema @[obj].schema, {
-                transform: true
-            }
+            @[obj]._collection.attachSchema @[obj].schema
 )
