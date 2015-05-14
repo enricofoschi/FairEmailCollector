@@ -18,3 +18,5 @@ coffeescript
 kaptron:minimongoid
 aldeed:collection2
 aldeed:autoform
+gfk:mailgun-api
+meteorhacks:ssr
