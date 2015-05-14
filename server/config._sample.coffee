@@ -3,6 +3,10 @@
         username: ''
         password: ''
         server: ''
+    mailgun:
+        apiKey: ''
+        domain: ''
+        from: ''
     kadira:
         appId: ''
         appSecret: ''
