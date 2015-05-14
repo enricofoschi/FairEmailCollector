@@ -1,4 +1,7 @@
 ((template) =>
+
+    instance = null
+
     Helpers.Client.Application.addCallbacksToTemplate template.viewName, [
         'adaptive-label'
     ]
@@ -7,12 +10,14 @@
         return getSelectedJobs().any((availableJob) => availableJob.id is job.id)
 
     getSelectedJobs = ->
-        Template.instance().data.selectedJobs.get()
+        instance.data.selectedJobs.get()
 
     setSelectedJobs = (selectedJobs) ->
-        Template.instance().data.selectedJobs.set selectedJobs
+        instance.data.selectedJobs.set selectedJobs
 
     template.created = ->
+        instance = Template.instance()
+
         @data.availableJobsMatrix = @data.AvailableJob.find().fetch().toMatrix 3;
 
         @data.selectedJobs = new ReactiveVar()
@@ -41,8 +46,16 @@
 
     @AutoForm.hooks {
         insertCandidateForm:
-            onSuccess: ->
-                console.log 'ok'
+            onSuccess: (formType, result) ->
+                candidate = Candidate.first result
+                if candidate
+                    candidate.push {
+                        jobs: getSelectedJobs()
+                    }
+                    candidate = Candidate.first result
+                    Meteor.call 'notifyOnCandidate', candidate, getSelectedJobs()
+                    setSelectedJobs []
+
     }
 
 )(Template['core.index'])
