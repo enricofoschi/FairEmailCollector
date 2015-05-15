@@ -1,0 +1,23 @@
+{
+    "smtp": {
+        "username": null,
+        "password": null,
+        "server": null
+    },
+    "mailgun": {
+        "apiKey": null,
+        "domain": null,
+        "from": null
+    },
+    "kadira": {
+        "appId": null,
+        "appSecret": null,
+        "on": false
+    },
+    "jobs": [
+        {
+            "code": "CODE",
+            "title": "Title"
+        }
+    ]
+}
