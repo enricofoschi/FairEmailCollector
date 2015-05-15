@@ -49,12 +49,12 @@ class @Helpers.Email
         }
 
         sender = new Mailgun {
-            apiKey: serverConfig.mailgun.apiKey
-            domain: serverConfig.mailgun.domain
+            apiKey: Meteor.settings.mailgun.apiKey
+            domain: Meteor.settings.mailgun.domain
         }
 
         sender.send {
-            from:       serverConfig.mailgun.from
+            from:       Meteor.settings.mailgun.from
             to:         options.to
             subject:    options.subject
             html:       html

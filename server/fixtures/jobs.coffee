@@ -1,5 +1,5 @@
 Meteor.startup(=>
-    for job in serverConfig.jobs
+    for job in Meteor.settings.jobs
 
         dbJob = Job.firstOrDefault {
             code: job.code
@@ -13,7 +13,7 @@ Meteor.startup(=>
 
     for job in Job.all()
 
-        if not serverConfig.jobs.any((x) => x.code is job.code)
+        if not Meteor.settings.jobs.any((x) => x.code is job.code)
 
             job.update {
                 active: false
