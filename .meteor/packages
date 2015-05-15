@@ -8,7 +8,6 @@ meteor-platform
 iron:router
 email
 fortawesome:fontawesome
-fourseven:scss
 francocatena:compass
 underscore
 houston:admin
@@ -26,3 +25,5 @@ meteorhacks:npm
 npm-container
 meteorhacks:async
 http
+kevohagan:sweetalert
+fourseven:scss
