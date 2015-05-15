@@ -7,10 +7,10 @@
                     <h2>I am...</h2>
 
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-md-6">
                             {{> afFormGroup class='input-lg' name='firstName' placeholder='schemaLabel'}}
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-md-6">
                             {{> afQuickField class='input-lg' name='lastName' placeholder='schemaLabel'}}
                         </div>
                     </div>
@@ -25,7 +25,7 @@
                         {{#each availableJobsMatrix}}
                         <div class="row">
                             {{#each this}}
-                            <div class="col-lg-4 col-md-3 col-xs-2">
+                            <div class="col-lg-3 col-md-4 col-xs-6">
                                 <div class="job selectable {{#if isSelected }}selected{{/if}}">
                                     <i class="icon-selected fa fa-check-circle text-success"></i>
                                     <span class="job-title">{{title}}</span>
