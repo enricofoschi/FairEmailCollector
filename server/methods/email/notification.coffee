@@ -3,7 +3,7 @@ Meteor.methods {
 
         @unblock()
 
-        Helpers.Email.Send {
+        Helpers.Server.Email.Send {
             template: 'alert'
             subject: 'New Candidate'
             to: 'foschi.enrico@gmail.com'
