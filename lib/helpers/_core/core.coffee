@@ -1,4 +1,7 @@
-@Helpers = {}
+@Helpers = {
+    Client: {},
+    Server: {}
+}
 Global = @
 
 class @Helpers.Core

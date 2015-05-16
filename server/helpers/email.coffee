@@ -1,4 +1,4 @@
-class @Helpers.Email
+class @Helpers.Server.Email
 
     templates = {}
 
