@@ -47,14 +47,20 @@
     @AutoForm.hooks {
         insertCandidateForm:
             onSuccess: (formType, result) ->
+
+                form = $ @event.target
+
                 candidate = Candidate.first result
                 if candidate
                     candidate.push {
                         jobs: getSelectedJobs()
                     }
                     candidate = Candidate.first result
-                    Meteor.call 'notifyOnCandidate', candidate, getSelectedJobs()
-                    setSelectedJobs []
+                    Meteor.call 'notifyOnCandidate', candidate, getSelectedJobs(), (errors, result) ->
+                        if not errors
+                            setSelectedJobs []
+                            Helpers.Client.Form.ClearInputs form
+                            sweetAlert("Great job!", "We'll be in touch soon", "success")
 
     }
 
