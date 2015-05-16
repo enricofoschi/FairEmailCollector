@@ -6,7 +6,7 @@
 		var onClass = "on";
 		var showClass = "active";
 
-		$(".adaptive-field-wrapper input").bind("checkval", function () {
+		$(".adaptive-field-wrapper").find("input,textarea,select").bind("checkval", function () {
 			var label = $(this).prev("label");
 			if (this.value !== "") {
 				label.addClass(showClass);
