@@ -9,7 +9,7 @@
         "domain": null,
         "from": null
     },
-    "kadira": {
+    "kadiraAuth": {
         "appId": null,
         "appSecret": null,
         "on": false
