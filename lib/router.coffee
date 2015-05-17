@@ -16,3 +16,12 @@ Router.route '/', {
         AvailableJob: Job
     }
 }
+
+Router.route '/users', {
+    action: ->
+        @.render 'admin.index'
+        return
+    data: -> {
+        Candidates: Candidate
+    }
+}

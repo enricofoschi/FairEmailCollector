@@ -19,7 +19,13 @@ The cool thing about this app is that it gave me a chance to develop a microfram
 * Admin interface for mongo objects
 * Kadira monitoring
 
-Just clone it, update your settings.json (template: settings.default.json), run meteor and browse:
+Just clone it, update your settings.json (template: settings.default.json), run 
+
+'''shell
+meteor --settings=settings.default.json
+'''
+
+and browse:
 
 http://localhost:3000 - main app
 http://localhost:3000/admin - mongo admin
