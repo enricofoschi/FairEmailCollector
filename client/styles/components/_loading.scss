@@ -93,3 +93,14 @@
     -o-animation: uil-ring-anim 1s linear infinite;
     animation: uil-ring-anim 1s linear infinite;
 }
+.blocker-container {
+    display:none;
+    position:fixed;
+    top:0;
+    height:100%;
+    width:100%;
+    background: rgba(255, 255, 255, 0.75);
+    padding:100px 0 0 0;
+    text-align:center;
+    z-index:1000;
+}

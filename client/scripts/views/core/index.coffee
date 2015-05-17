@@ -56,7 +56,7 @@
                         jobs: getSelectedJobs()
                     }
                     candidate = Candidate.first result
-                    Meteor.call 'notifyOnCandidate', candidate, getSelectedJobs(), (errors, result) ->
+                    Helpers.Client.Meteor.CallMethod 'notifyOnCandidate', candidate, getSelectedJobs(), (errors, result) ->
                         if not errors
                             setSelectedJobs []
                             Helpers.Client.Form.ClearInputs form
