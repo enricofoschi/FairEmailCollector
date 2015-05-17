@@ -10,7 +10,7 @@
             padding: 20px;
             @include box-shadow;
             cursor:pointer;
-            @include doTransition(all, 0.2s, ease-in-out);
+            @include doTransition();
 
             &:hover
             {
