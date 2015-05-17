@@ -21,7 +21,7 @@ The cool thing about this app is that it gave me a chance to develop a microfram
 
 Just clone it, update your settings.json (template: settings.default.json), run 
 
-'''shell
+'''
 meteor --settings=settings.default.json
 '''
 
