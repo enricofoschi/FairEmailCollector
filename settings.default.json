@@ -20,5 +20,7 @@
             "title": "Title"
         }
     ],
-    "accessPassword": ""
+    "accessPassword": "",
+    "rootUrl": "",
+    "sessionLength": 3600
 }
