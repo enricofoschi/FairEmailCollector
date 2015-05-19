@@ -103,6 +103,15 @@ class @BaseCollection extends Minimongoid
                         return HasAndBelongsToManyRelation.new(@, global[class_name], inverse_identifier, identifier,
                             @id)
 
+    @create: (attr) ->
+        attr.createdAt ||= (new Date()).UTCFromLocal()
+        super attr
+
+    update: (attr) ->
+        attr ||= attr
+        attr.updatedAt = (new Date()).UTCFromLocal()
+        super attr
+
     @firstOrDefault: (selector = {}, options = {}, defaults = {}) ->
         doc = @first selector, options
 
@@ -127,7 +136,7 @@ class @BaseCollection extends Minimongoid
     @getBaseObject: (obj) ->
         attr = {}
 
-        for own key, value of obj when key not in ['errors', 'createdAt', 'id']
+        for own key, value of obj when key not in ['errors', 'id']
             attr[key] = value
 
         attr
@@ -154,5 +163,15 @@ Meteor.startup(->
     for obj of @
 
         if obj and obj.indexOf('webkit') is -1 and @[obj] and @[obj].prototype instanceof BaseCollection
-            @[obj]._collection.attachSchema @[obj].schema
+
+            @[obj].schema = _.extend @[obj].schema, {
+                createdAt:
+                    type: Date
+                updatedAt:
+                    type: Date
+            }
+
+            @[obj].simpleSchema = new SimpleSchema @[obj].schema
+
+            @[obj]._collection.attachSchema @[obj].simpleSchema
 )

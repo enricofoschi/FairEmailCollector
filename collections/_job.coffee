@@ -8,7 +8,7 @@ class @Job extends BaseCollection
         attr.name = _.titleize(attr.name)
         attr
 
-    @schema: new SimpleSchema {
+    @schema: {
         title:
             type: String,
             max: 255

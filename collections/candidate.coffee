@@ -8,9 +8,9 @@ class @Candidate extends BaseCollection
         }
     ]
 
-    @schema: new SimpleSchema {
+    @schema: {
         jobs:
-            type: [Job.schema]
+            type: [new SimpleSchema(Job.schema)]
             optional: true
         firstName:
             type: String
