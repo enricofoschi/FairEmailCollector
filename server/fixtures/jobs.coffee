@@ -1,15 +1,21 @@
 Meteor.startup(=>
     for job in Meteor.settings.jobs
 
-        dbJob = Job.firstOrDefault {
+        dbJob = Job.first {
             code: job.code
         }
 
-        dbJob.update {
+        data = {
             code: job.code,
             title: job.title,
             active: true
         }
+
+        if dbJob
+            dbJob.update data
+        else
+            dbJob = Job.create data
+            console.log dbJob.errors
 
     for job in Job.all()
 

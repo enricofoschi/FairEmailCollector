@@ -5,7 +5,7 @@ class @Job extends BaseCollection
 
     # titleize the name before creation
     @before_create: (attr) ->
-        attr.name = _.titleize(attr.name)
+        attr.title = _.titleize(attr.title)
         attr
 
     @schema: {
