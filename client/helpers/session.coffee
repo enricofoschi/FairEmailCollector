@@ -1,25 +1,37 @@
-class @Helpers.Client.Session
+class @Helpers.Client.SessionHelper
 
     TOKEN_KEY = 'token'
     CLIENT_DATA = 'client'
 
+    ''' Ensures the token is refreshed or created if not available'''
     @EnsureToken: ->
         token = Helpers.Client.Storage.Get TOKEN_KEY
-        created = false
-
-        console.log 'Found ' + token
+        clientData = null
 
         if not token
-            Meteor.call 'getNewSessionToken', (errors, results) ->
+            Meteor.call 'getNewSessionToken', (errors, results) =>
                 if not errors
-                    console.log 'Stored ' + token
-                    token = results.token
-                    created = true
                     Helpers.Client.Storage.Set TOKEN_KEY, token
-                    Helpers.Client.Storage.Set CLIENT_DATA, results.clientData
+                    @ParseClientData results.clientData if results?.clientData
+        else
+            Meteor.call 'persistSessionToken', token, (errors, results) =>
+                @ParseClientData results.clientData if results?.clientData
 
-        if token and not created
-            console.log 'Persisting ' + token
-            Meteor.call 'persistSessionToken', token, (errors, results) ->
-                Helpers.Client.Storage.Set TOKEN_KEY, token
-                Helpers.Client.Storage.Set CLIENT_DATA, results.clientData
+    ''' Ensures that the data that should be available on the client is actually loaded
+        into che client Session '''
+    @ParseClientData: (clientData) ->
+        Helpers.Client.Storage.Set CLIENT_DATA, clientData
+
+        for own key, value of clientData
+            Session.set key, value
+
+    @Refresh: ->
+        @EnsureToken()
+
+    @Get: (key) ->
+        Session.get(key)
+
+    ''' Sets a new value on the client available data, stored on the server and reloaded'''
+    @Set: (key, value) ->
+        Meteor.call 'setSessionValue', key, value, (errors, results) ->
+            @ParseClientData results.clientData if results and results.clientData
