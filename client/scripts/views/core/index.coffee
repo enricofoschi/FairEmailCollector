@@ -46,10 +46,23 @@
 
     @AutoForm.hooks {
         insertCandidateForm:
+
+            onError: (formType, error) ->
+                console.log error
+                sweetAlert("Damn!", error, "error")
+
+            before: {
+                insert: (attr) ->
+                    attr.createdAt ||= (new Date()).UTCFromLocal()
+                    attr.updatedAt = attr.createdAt
+
+                    attr
+            }
+
             onSuccess: (formType, result) ->
 
                 form = $ @event.target
-
+                console.log result
                 candidate = Candidate.first result
                 if candidate
                     candidate.push {
