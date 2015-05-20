@@ -104,7 +104,9 @@ class @BaseCollection extends Minimongoid
                             @id)
 
     @create: (attr) ->
+        attr ||= {}
         attr.createdAt ||= (new Date()).UTCFromLocal()
+        attr.updatedAt = attr.createdAt
         super attr
 
     update: (attr) ->
@@ -117,6 +119,14 @@ class @BaseCollection extends Minimongoid
 
         if not doc
             doc = @init defaults
+
+        doc
+
+    @firstOrCreate: (attr = {}) ->
+        doc = @first attr
+
+        if not doc
+            doc = @create attr
 
         doc
 
@@ -165,6 +175,9 @@ Meteor.startup(->
         if obj and obj.indexOf('webkit') is -1 and @[obj] and @[obj].prototype instanceof BaseCollection
 
             @[obj].schema = _.extend @[obj].schema, {
+                _id:
+                    type: String
+                    optional: true
                 createdAt:
                     type: Date
                 updatedAt:
