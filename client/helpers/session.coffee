@@ -22,14 +22,16 @@ class @Helpers.Client.SessionHelper
     @ParseClientData: (clientData) ->
         Helpers.Client.Storage.Set CLIENT_DATA, clientData
 
-        for own key, value of clientData
-            Session.set key, value
+        Session.set CLIENT_DATA, clientData
 
     @Refresh: ->
         @EnsureToken()
 
     @Get: (key) ->
-        Session.get(key)
+
+        clientData = Session.get CLIENT_DATA
+
+        if clientData[key] then clientData[key] else Session.get(key)
 
     ''' Sets a new value on the client available data, stored on the server and reloaded'''
     @Set: (key, value) ->
