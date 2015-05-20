@@ -18,7 +18,7 @@
     template.created = ->
         instance = Template.instance()
 
-        @data.availableJobsMatrix = @data.AvailableJob.find().fetch().toMatrix 3;
+        @data.availableJobsMatrix = @data.AvailableJob.find().fetch().toMatrix 4;
 
         @data.selectedJobs = new ReactiveVar()
         setSelectedJobs []
