@@ -12,7 +12,7 @@ class @Helpers.Server.Session
     @SetToken: (connection, token) ->
         connections[connection.id] = token
 
-    @Set: (connection, key, value, forClient=false) ->
+    @Set: (connection, key, value, forClient=false, forServer=true) ->
 
         if connections[connection.id]
             sessionData = null
@@ -21,7 +21,9 @@ class @Helpers.Server.Session
                 token: connections[connection.id]
             }
 
-            sessionData.setData key, value, forClient
+            sessionData.setData key, value, forClient, forServer
+
+            sessionData
 
     Meteor.server.onConnection (connection) ->
         connection.onClose ->
