@@ -8,6 +8,13 @@ Router.configure {
         ]
 }
 
+Router.onBeforeAction ->
+
+    if not Helpers.Client.Auth.IsLoggedIn()
+        @render 'login'
+    else
+        @next()
+
 Router.route '/', {
     action: ->
         @.render 'core.index'
