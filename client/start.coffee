@@ -3,4 +3,4 @@ Meteor.autorun ->
         Helpers.Client.SessionHelper.EnsureToken()
 
 Meteor.startup ->
-    window.setInterval Helpers.Client.SessionHelper.EnsureToken, 600000
+    window.setInterval Helpers.Client.SessionHelper.EnsureToken, 60000
