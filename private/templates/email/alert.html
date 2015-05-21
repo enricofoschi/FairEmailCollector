@@ -1,15 +1,40 @@
-<p style="{{styleText}}">
-    A new candidate subscribed:
-    <br/>
-    <br/>
-    <strong>Name</strong>: {{candidate.firstName}} {{candidate.lastName}}
-    <br/>
-    <strong>Email</strong>: {{candidate.email}}
-    <br/>
-    <strong>Interests</strong>:
-</p>
-<ul style="{{styleMain14}}">
-    {{#each jobs}}
-    <li>{{title}}</li>
-    {{/each}}
-</ul>
+<tr style="{{styleTable}}">
+    <td class="content-block"
+        style="{{styleTd}}"
+        valign="top">
+        You have <strong>1</strong> new candidate interested in joining Rocket Internet SE
+    </td>
+</tr>
+
+<tr>
+    <td class="content-block" style="{{styleTd}}">
+        <strong>Name</strong>: {{candidate.firstName}} {{candidate.lastName}}
+    </td>
+</tr>
+<tr>
+    <td class="content-block" style="{{styleTd}}">
+        <strong>Email</strong>: <a href="mailto:{{candidate.email}}">{{candidate.email}}</a>
+    </td>
+</tr>
+{{#if jobs}}
+<tr>
+    <td class="content-block" style="{{styleTd}}">
+        <strong>Interested in</strong>:
+        <ul>
+            {{#each jobs}}
+            <li style="{{styleTd}}">{{title}}</li>
+            {{/each}}
+        </ul>
+    </td>
+</tr>
+{{/if}}
+<tr>
+    <td class="content-block" style="{{styleTd}}">
+        <strong>Email</strong>: <a href="mailto:{{candidate.email}}">{{candidate.email}}</a>
+    </td>
+</tr>
+<tr>
+    <td class="content-block" style="{{styleTd}}">
+        <a href="{{Meteor.settings.rootUrl}}users" class="btn-primary">View all users</a>
+    </td>
+</tr>
