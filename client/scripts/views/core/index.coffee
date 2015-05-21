@@ -44,37 +44,25 @@
             setSelectedJobs selectedJobs
     }
 
-    @AutoForm.hooks {
-        insertCandidateForm:
+    Meteor.startup ->
+        @AutoForm.hooks {
+            insertCandidateForm: Helpers.Client.Form.GetFormHooks {
+                onSuccess: (formType, result) ->
 
-            onError: (formType, error) ->
-                console.log error
-                sweetAlert("Damn!", error, "error")
+                    form = $ @event.target
 
-            before: {
-                insert: (attr) ->
-                    attr.createdAt ||= (new Date()).UTCFromLocal()
-                    attr.updatedAt = attr.createdAt
-
-                    attr
-            }
-
-            onSuccess: (formType, result) ->
-
-                form = $ @event.target
-                console.log result
-                candidate = Candidate.first result
-                if candidate
-                    candidate.push {
-                        jobs: getSelectedJobs()
-                    }
                     candidate = Candidate.first result
-                    Helpers.Client.Meteor.CallMethod 'notifyOnCandidate', candidate, getSelectedJobs(), (errors, result) ->
-                        if not errors
-                            setSelectedJobs []
-                            Helpers.Client.Form.ClearInputs form
-                            sweetAlert("Great job!", "We'll be in touch soon", "success")
-
-    }
+                    if candidate
+                        candidate.push {
+                            jobs: getSelectedJobs()
+                        }
+                        candidate = Candidate.first result
+                        Helpers.Client.Meteor.CallMethod 'notifyOnCandidate', candidate, getSelectedJobs(), (errors, result) ->
+                            if not errors
+                                setSelectedJobs []
+                                Helpers.Client.Form.ClearInputs form
+                                sweetAlert("Great job!", "We'll be in touch soon", "success")
+            }
+        }
 
 )(Template['core.index'])
