@@ -5,8 +5,12 @@ class @Helpers.Server.Email
     head = null
     foot = null
 
-    styleMain = "font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; line-height: 1.6; font-weight: normal; "
-    styleMain14 = styleMain += 'font-size: 14px; '
+    styleMain = "font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; margin: 0; padding: 0;box-sizing: border-box;"
+    styleSize14 = 'font-size: 14px; '
+    styleMain14 = styleMain + styleSize14
+    styleTable = styleMain14
+    styleTd = styleTable + 'padding: 0 0 20px;'
+    styleParagraph = styleMain14 + ' margin: 0 0 10px; padding: 0;'
 
 
     @Init: (template, helpers) ->
@@ -18,7 +22,9 @@ class @Helpers.Server.Email
             helpers = _.extend {
                 styleMain: styleMain,
                 styleMain14: styleMain14,
-                styleParagraph: styleMain14 + ' margin: 0 0 10px; padding: 0;'
+                styleParagraph: styleParagraph
+                styleTable: styleTable
+                styleTd: styleTd
             }, helpers ||= {}
 
             Template[template].helpers helpers
@@ -33,7 +39,9 @@ class @Helpers.Server.Email
 
         @Init properties.template, properties.helpers
 
-        html = head.format properties.title
+        html = head.format {
+            title: properties.title
+        }
         html += SSR.render properties.template, properties.data
         html += foot
 
