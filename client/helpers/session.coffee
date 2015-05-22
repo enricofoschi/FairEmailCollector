@@ -11,7 +11,7 @@ class @Helpers.Client.SessionHelper
         if not token
             Meteor.call 'getNewSessionToken', (errors, results) =>
                 if not errors
-                    Helpers.Client.Storage.Set TOKEN_KEY, token
+                    Helpers.Client.Storage.Set TOKEN_KEY, results.token
                     @ParseClientData results.clientData if results?.clientData
         else
             Meteor.call 'persistSessionToken', token, (errors, results) =>
