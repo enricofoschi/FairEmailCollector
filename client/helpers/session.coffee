@@ -4,7 +4,7 @@ class @Helpers.Client.SessionHelper
     CLIENT_DATA = 'client'
 
     ''' Ensures the token is refreshed or created if not available'''
-    @EnsureToken: ->
+    @EnsureToken: =>
         token = Helpers.Client.Storage.Get TOKEN_KEY
         clientData = null
 
